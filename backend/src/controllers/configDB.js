@@ -4,7 +4,7 @@ import { open } from 'sqlite'
 // you would have to import / invoke this in another file
 export async function openDb() {
     return open({
-        filename: '../database/teste.db',
+        filename: '../database/PCdesligar.db',
         driver: sqlite3.Database
     })
 }

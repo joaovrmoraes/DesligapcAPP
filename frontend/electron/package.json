@@ -47,6 +47,7 @@
           "@electron-forge/plugin-webpack",
           {
             "mainConfig": "./webpack.main.config.js",
+            "devContentSecurityPolicy": "connect-src 'self' http://localhost:3333 'unsafe-eval'",
             "renderer": {
               "config": "./webpack.renderer.config.js",
               "entryPoints": [
@@ -82,8 +83,14 @@
     "style-loader": "^3.0.0"
   },
   "dependencies": {
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.1",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.4.0",
+    "sass": "^1.54.9"
   }
 }

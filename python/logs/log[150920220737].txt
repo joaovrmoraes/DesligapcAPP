@@ -1,0 +1,4 @@
+4VSFKH3.BRANYL.DOMINIO : Desligado  [Thu Sep 15 07:37:41 2022]
+teste3.SPMOMBUCA.BRANYL.DOMINIO : Desligado  [Thu Sep 15 07:37:42 2022]
+abc.BRANYL.DOMINIO : Desligado  [Thu Sep 15 07:37:43 2022]
+pcdomurilo.BRANYL.DOMINIO : Desligado  [Thu Sep 15 07:37:43 2022]

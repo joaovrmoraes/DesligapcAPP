@@ -7,25 +7,25 @@ from datetime import datetime
 data_e_hora_atuais = datetime.now()
 data_e_hora_em = data_e_hora_atuais.strftime("%d%m%Y%H%M")
 
-conn = sqlite3.connect('database/teste.db')
+conn = sqlite3.connect('../database/PCdesligar.db')
 
 cursor = conn.cursor()
 
 cursor.execute("""
-SELECT tag FROM computadores;
+SELECT tag, dominio FROM computadores WHERE desliga=1;
 """)
 
-with open("python/config/msg.txt", "r") as tf:
+with open("config/msg.txt", "r") as tf:
     msg = tf.read()
 
 for linha in cursor.fetchall():
     teste = ''.join(linha)
     Computer_List = [teste]
 
-    for Computer in Computer_List:
-        a = os.system("shutdown /m "+Computer+" /r /c"+msg+"/t 60"+msg)
+    for Computer in Computer_List:        
         print(Computer)
-        arquivo = open('python/logs/log['+data_e_hora_em+'].txt', 'a')
+        a = os.system("shutdown /m "+Computer+" /r /c"+msg+"/t 60"+msg)
+        arquivo = open('logs/log['+data_e_hora_em+'].txt', 'a')
         arquivo.write(Computer + ' : ')
         if a > 2:
             arquivo.write("Desligado  ["+time.ctime()+"]\n")

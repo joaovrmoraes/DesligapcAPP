@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { selectPC, insertPc, alterarPc } from "./controllers/computadores.js";
+import { selectPC, insertPc, alterarPc, createTable } from "./controllers/computadores.js";
 const routes = new Router();
+
+createTable();
 
 routes.get('/', (req, res) => {
     res.json({
