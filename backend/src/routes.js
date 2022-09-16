@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { selectPC, insertPc, alterarPc, createTable } from "./controllers/computadores.js";
+import { selectPC, insertPc, alterarPc, createTable, alterarHorario, selectHorario } from "./controllers/computadores.js";
 const routes = new Router();
+import { executador } from './controllers/executador.js'
 
 createTable();
+executador();
 
 routes.get('/', (req, res) => {
     res.json({
@@ -14,5 +16,7 @@ routes.get('/', (req, res) => {
 routes.get('/lista', selectPC)
 routes.post('/addpc', insertPc)
 routes.put('/alterar', alterarPc)
+routes.put('/horario', alterarHorario)
+routes.get('/horario', selectHorario)
 
 export default routes

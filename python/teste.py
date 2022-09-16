@@ -15,7 +15,7 @@ cursor.execute("""
 SELECT tag, dominio FROM computadores WHERE desliga=1;
 """)
 
-with open("config/msg.txt", "r") as tf:
+with open("E:\Joao\Projeto de Teste\delisgapcbanco\python\config\msg.txt", "r") as tf:
     msg = tf.read()
 
 for linha in cursor.fetchall():
@@ -25,7 +25,7 @@ for linha in cursor.fetchall():
     for Computer in Computer_List:        
         print(Computer)
         a = os.system("shutdown /m "+Computer+" /r /c"+msg+"/t 60"+msg)
-        arquivo = open('logs/log['+data_e_hora_em+'].txt', 'a')
+        arquivo = open('E:\Joao\Projeto de Teste\delisgapcbanco\python\logs\log['+data_e_hora_em+'].txt', 'a')
         arquivo.write(Computer + ' : ')
         if a > 2:
             arquivo.write("Desligado  ["+time.ctime()+"]\n")

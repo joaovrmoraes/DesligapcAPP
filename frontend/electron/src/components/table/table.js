@@ -1,16 +1,20 @@
 import * as React from 'react';
-import Table from 'react-bootstrap/Table';
-import { BiDotsVerticalRounded } from 'react-icons/bi'
-import { FaTimes, FaCheck } from 'react-icons/fa'
-import api from '../../services/api/axios.js'
 import { useState, useEffect } from 'react';
-import BotaoEdit from '../buttonSetting/button.js';
-import '../button/button.css';
-import { FcAutomatic } from 'react-icons/fc';
+import { FcAutomatic, FcClock } from 'react-icons/fc';
+import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { FaTimes, FaCheck, FaSearch } from 'react-icons/fa'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Stack from 'react-bootstrap/Stack';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Table from 'react-bootstrap/Table';
+import api from '../../services/api/axios.js'
+import Horario from '../buttonSetting copy/button.js';
+import '../button/button.css';
+import './table.css'
 
 function TabelaPC() {
     const [itens, setItens] = useState([])
@@ -20,6 +24,7 @@ function TabelaPC() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [busca, setBusca] = useState('');
     const [id, setId] = useState('');
     const [nome, setNome] = useState('');
     const [tag, setTag] = useState('');
@@ -27,12 +32,12 @@ function TabelaPC() {
     const [dominio, setDominio] = useState('');
 
     useEffect(() => {
-        api.get('/lista')
+        api.get('/lista?nome=' + busca)
             .then(async (response) => {
                 await
                     setItens(response.data)
             }).catch(error => { console.log('erro ao receber lista') })
-    }, [refreshKey])
+    }, [refreshKey, busca])
 
     function atualizador() {
         setItens([])
@@ -70,11 +75,38 @@ function TabelaPC() {
             })
     }
 
-    console.log(desliga)
-
     return (
         <>
+            <div className='header'>
+                <Form className="align-items-center">
+                    <Row className="align-items-center">
+                        <Col sm={2}>
+                            <Horario />
+                        </Col>
+                        <Col>
+                        </Col>
+                        <Col sm={6}>
+                            <Form.Label htmlFor="inlineFormInputGroupUsername" visuallyHidden>
+                                Pesquisa
+                            </Form.Label>
+                            <InputGroup >
+                                <InputGroup.Text style={{ 'backgroundColor': 'transparent', 'borderRight': '0 none' }}>
+                                    <FaSearch size={22} />
+                                </InputGroup.Text>
+                                <Form.Control
+                                    id="inlineFormInputGroupUsername"
+                                    placeholder="Pesquisa"
+                                    style={{ 'borderLeft': '0 none' }}
+                                    onChange={(e) => { setBusca(e.target.value) }}
+                                />
+                            </InputGroup>
+                        </Col>
+                    </Row>
+                </Form>
+            </div>
+            <div class="border-top line"></div>
             <Table striped hover >
+
                 <thead className='text-center'>
                     <tr>
                         <th><BiDotsVerticalRounded size={18} /></th>
@@ -141,7 +173,7 @@ function TabelaPC() {
                                             </Stack>
                                         </Modal.Body>
                                         <Modal.Footer className='d-flex justify-content-between'>
-                                            <Button variant="success" onClick={() => { handleClose(); Editar(); atualizador() }}>
+                                            <Button variant="success" onClick={async () => { handleClose(); Editar(); atualizador() }}>
                                                 Inserir
                                             </Button>
                                             <Button variant="danger" onClick={() => { handleClose(); }}>

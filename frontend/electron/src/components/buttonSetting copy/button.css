@@ -1,0 +1,18 @@
+.edit_button {
+    background-color: transparent;
+    border: 0;
+    font-size: 18px;
+}
+
+.edit_button:hover {
+    transform: scale(0.90);
+}
+
+.pageakdf {
+    background-color: black;
+}
+
+.botaoHorario:hover {
+    transform: scale(0.90);
+    cursor: pointer;
+}

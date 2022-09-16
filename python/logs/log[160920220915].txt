@@ -1,0 +1,2 @@
+4VSFKH3.BRANYL.DOMINIO : Ok  [Fri Sep 16 09:15:20 2022]
+teste.BRANYL.DOMINIO : Desligado  [Fri Sep 16 09:15:21 2022]

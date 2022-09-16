@@ -34,6 +34,10 @@ function BotaoModal() {
             })
     }
 
+    function refresh() {
+        location.reload()
+    }
+
     return (
         <>
             <button className='edit_button' onClick={handleShow}>
@@ -88,7 +92,7 @@ function BotaoModal() {
                     </Stack>
                 </Modal.Body>
                 <Modal.Footer className='d-flex justify-content-between'>
-                    <Button variant="success" onClick={() => { handleClose(); adicionar() }}>
+                    <Button variant="success" onClick={() => { handleClose(); adicionar(); refresh() }}>
                         Inserir
                     </Button>
                     <Button variant="danger" onClick={() => { handleClose() }}>

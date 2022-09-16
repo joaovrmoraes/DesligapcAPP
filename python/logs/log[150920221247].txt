@@ -1,4 +1,0 @@
-4VSFKH3.BRANYL.DOMINIO : Ok  [Thu Sep 15 12:47:54 2022]
-teste3.SPMOMBUCA.BRANYL.DOMINIO : Desligado  [Thu Sep 15 12:47:55 2022]
-abc.BRANYL.DOMINIO : Desligado  [Thu Sep 15 12:47:56 2022]
-murilinho.BRANYL.DOMINIO : Desligado  [Thu Sep 15 12:47:57 2022]

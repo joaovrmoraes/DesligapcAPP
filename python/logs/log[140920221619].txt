@@ -1,4 +1,0 @@
-4VSFKH3 : Ok  [Wed Sep 14 16:19:40 2022]
-teste3 : Desligado  [Wed Sep 14 16:19:43 2022]
-4VSFKH3 : Desligado  [Wed Sep 14 16:19:53 2022]
-teste3 : Desligado  [Wed Sep 14 16:19:54 2022]

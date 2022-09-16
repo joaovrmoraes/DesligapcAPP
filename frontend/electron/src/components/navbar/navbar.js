@@ -10,7 +10,7 @@ function NavigateBar() {
         <Navbar bg="dark" variant="dark">
             <Container>
                 <Navbar.Brand href="/">
-                    <span className='logo'> Branyl Desliga PC</span>
+                    <span className='logo'>BRANYL MONITOR 🖥️</span>
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Nav className="justify-content-end teste2">
