@@ -26,11 +26,11 @@ for linha in cursor.fetchall():
         print(Computer)
         a = os.system("shutdown /m "+Computer+" /r /c"+msg+"/t 60"+msg)
         arquivo = open('E:\Joao\Projeto de Teste\delisgapcbanco\python\logs\log['+data_e_hora_em+'].txt', 'a')
-        arquivo.write(Computer + ' : ')
+        arquivo.write('{Computador:'+Computer)
         if a > 2:
-            arquivo.write("Desligado  ["+time.ctime()+"]\n")
+            arquivo.write(" Status: Desligado Tempo:"+time.ctime()+"}\n")
         else:
-            arquivo.write("Ok  ["+time.ctime()+"]\n")
+            arquivo.write(" Status: Ok Tempo:"+time.ctime()+"}\n")
             arquivo.close()
 
 conn.close()

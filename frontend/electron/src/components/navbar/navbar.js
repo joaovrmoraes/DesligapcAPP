@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { FcAddDatabase } from "react-icons/fc"
 import './navbar.css'
 import BotaoModal from '../button/button';
 
@@ -14,6 +13,7 @@ function NavigateBar() {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Nav className="justify-content-end teste2">
+
                     <Nav.Link href="#features" className='cadastro'>
                         <BotaoModal />
                     </Nav.Link>

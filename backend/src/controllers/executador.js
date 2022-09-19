@@ -4,7 +4,7 @@ import { PythonShell } from "python-shell";
 import { openDb } from "./configDB.js";
 
 export async function executador(req, res) {
-    const job2 = new CronJob(`*/10 * * * *`, () => {
+    const job2 = new CronJob(`0 * * * *`, () => {
         openDb()
             .then(db => {
                 db.all('SELECT * FROM hora  ')

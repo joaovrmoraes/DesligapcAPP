@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Table from 'react-bootstrap/Table';
 import api from '../../services/api/axios.js'
-import Horario from '../buttonSetting copy/button.js';
+import Horario from '../buttonHorario/button.js';
 import '../button/button.css';
 import './table.css'
 
@@ -104,7 +104,7 @@ function TabelaPC() {
                     </Row>
                 </Form>
             </div>
-            <div class="border-top line"></div>
+            <div className="border-top line"></div>
             <Table striped hover >
 
                 <thead className='text-center'>

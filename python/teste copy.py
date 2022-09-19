@@ -19,19 +19,32 @@ SELECT tag, dominio FROM computadores WHERE desliga=1;
 with open("E:\Joao\Projeto de Teste\delisgapcbanco\python\config\msg.txt", "r") as tf:
     msg = tf.read()
 
+arquivo = open(
+    'E:\Joao\Projeto de Teste\delisgapcbanco\python\logs\log['+data_e_hora_em+'].json', 'a')
+arquivo.write('[')
+
 for linha in cursor.fetchall():
     teste = ''.join(linha)
     Computer_List = [teste]
 
-    for Computer in Computer_List:        
+    for Computer in Computer_List:
         print(Computer)
         a = os.system("shutdown /m "+Computer+" /r /c"+msg+"/t 60"+msg)
-        arquivo = open('E:\Joao\Projeto de Teste\delisgapcbanco\python\logs\log['+data_e_hora_em+'].json', 'a')
-        arquivo.write(Computer + ' : ')
-        if a > 2:
-            arquivo.write("Desligado  ["+time.ctime()+"]\n")
-        else:
-            arquivo.write("Ok  ["+time.ctime()+"]\n")
-            arquivo.close()
 
+        if a > 2:
+            status = "Desligado"
+        else:
+            status = "Desligado"
+
+        pcs = {
+            "tag": Computer,
+            "marca": status,
+            "cor": time.ctime()
+        }
+        pcs_json = json.dumps(pcs)
+        arquivo.write(pcs_json+',\n')
+
+
+arquivo.write(']')
+arquivo.close()
 conn.close()
