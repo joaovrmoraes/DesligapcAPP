@@ -1,0 +1,12 @@
+[{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Ok" ,"Tempo":"Tue Sep 20 11:30:31 2022"}
+,
+{"Computador": "a.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 11:30:32 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 11:30:33 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 11:30:35 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 11:30:36 2022"}
+,
+ {"Computador": "A.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 11:30:37 2022"}
+ ]

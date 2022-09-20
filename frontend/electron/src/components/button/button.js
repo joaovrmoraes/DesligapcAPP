@@ -40,8 +40,8 @@ function BotaoModal() {
 
     return (
         <>
-            <button className='edit_button' onClick={handleShow}>
-                <FcAddDatabase size={30} />
+            <button className='edit_button' onClick={handleShow} style={{ 'color': 'white' }}>
+                <FcAddDatabase size={30} />  Cadastrar
             </button>
             <Modal show={show}
                 onHide={handleClose}

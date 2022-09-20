@@ -1,0 +1,10 @@
+[{"Computador": "a.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 09:00:02 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 09:00:04 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 09:00:05 2022"}
+,
+ {"Computador": "TESTE.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 09:00:06 2022"}
+,
+ {"Computador": "A.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 20 09:00:08 2022"}
+ ]

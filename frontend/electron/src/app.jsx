@@ -4,7 +4,7 @@ import Home from './pages/Home/index.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function render() {
-  ReactDOM.render(<Home />, document.body);
+  ReactDOM.render(<Home />, document.getElementById("root"));
 }
 
 render();

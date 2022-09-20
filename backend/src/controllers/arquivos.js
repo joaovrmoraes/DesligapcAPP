@@ -11,12 +11,14 @@ export async function listarArquivos(req, res) {
 export async function selecionarArquivo(req, res) {
     const caminhoArquivo = 'E:\\Joao\\Projeto de Teste\\delisgapcbanco\\python\\logs\\' + req.query.nome
 
-    readFile(caminhoArquivo, (err, data) => {
+    // res.download(caminhoArquivo)
+    readFile(caminhoArquivo, "utf8", (err, data) => {
         if (err) {
             res.status(500).send(err);
             return;
         }
-        res
-            .send(data);
+        const json = JSON.parse(data);
+
+        res.json(json)
     })
 }

@@ -3,13 +3,14 @@ import * as React from 'react';
 import './button.css';
 import { FcFinePrint } from 'react-icons/fc';
 import { useState, useEffect } from 'react';
-import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { SiSocketdotio } from 'react-icons/si';
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import api from '../../services/api/axios.js';
-import LogButton from '../buttonLog/button';
 
-function BotaoLogs() {
+function LogButton({ value }) {
     const [show, setShow] = useState(false);
     const [logs, setLogs] = useState([]);
 
@@ -17,56 +18,61 @@ function BotaoLogs() {
     const handleShow = () => setShow(true);
 
     useEffect(() => {
-        api.get('/diretorio')
+        api.get('/arquivo?nome=' + value)
             .then(async (response) => {
                 await
                     setLogs(response.data)
             }).catch(error => { console.log('erro ao receber lista') })
     }, [])
 
-    function Editar(value) {
-        var nomeEdit = `${value[4]}${value[5]}/${value[6]}${value[7]}/${value[8]}${value[9]}${value[10]}${value[11]}`
-        return nomeEdit
+    function PowerOnOff(value) {
+        if (value === "Ok") {
+            return <SiSocketdotio style={{ 'color': 'green' }} size={24} />
+        }
+        return <SiSocketdotio style={{ 'color': 'red' }} size={24} />
     }
-    function EditarHora(value) {
-        var nomeEdit = `${value[12]}${value[13]}:${value[14]}${value[15]}`
-        return nomeEdit
+
+    function Dominio(value) {
+        let valorEditado = value.slice(value.indexOf(".") + 1)
+        if (valorEditado === 'BRANYL.DOMINIO') {
+            return 'CAPIVARI'
+        } else {
+            return 'MOMBUCA'
+        }
     }
 
     return (
         <>
             <button className='edit_button' onClick={() => { handleShow(); }} style={{ 'color': 'white' }}>
-                <FcFinePrint size={30} /> Logs
+                <FcFinePrint size={30} />
             </button>
             <Modal show={show}
                 onHide={handleClose}
-                size="lg"
+                fullscreen={true}
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header >
-                    <Modal.Title>Lista de Logs</Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title>{value.split('.', 1)}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Table striped hover >
                         <thead className='text-center'>
                             <tr>
-                                <th><BiDotsVerticalRounded size={18} /></th>
-                                <th>Log</th>
+                                <th>Computador</th>
+                                <th>Dominio</th>
+                                <th>Status</th>
                                 <th>Data</th>
-                                <th>Hora</th>
                             </tr>
                         </thead>
                         <tbody className='text-center'>
                             {logs.map((logs) => {
                                 return (
-                                    <tr key={logs}>
-                                        <td>
-                                            <LogButton value={logs} />
-                                        </td>
-                                        <td >{logs.replace("[", " ").replace("]", " ").split('.', 1)}</td>
-                                        <td >{Editar(logs)}</td>
-                                        <td>{EditarHora(logs)}</td>
+                                    <tr key={logs.Tempo}>
+                                        <td >{logs.Computador.split('.', 1)}</td>
+                                        <td >{Dominio(logs.Computador)}</td>
+                                        <td >{PowerOnOff(logs.Status)}</td>
+                                        <td>{logs.Tempo}</td>
                                     </tr>
                                 )
                             })}
@@ -77,4 +83,4 @@ function BotaoLogs() {
         </>
     )
 }
-export default BotaoLogs
+export default LogButton

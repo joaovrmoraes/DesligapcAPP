@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { FcAutomatic, FcClock } from 'react-icons/fc';
+import { FcAutomatic, FcFilledFilter } from 'react-icons/fc';
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { FaTimes, FaCheck, FaSearch } from 'react-icons/fa'
 import Button from 'react-bootstrap/Button';
@@ -60,6 +60,8 @@ function TabelaPC() {
         }
     }
 
+    const abc = <FcFilledFilter />
+
     function Editar() {
         api.put('/alterar', {
             nome: nome,
@@ -106,7 +108,6 @@ function TabelaPC() {
             </div>
             <div className="border-top line"></div>
             <Table striped hover >
-
                 <thead className='text-center'>
                     <tr>
                         <th><BiDotsVerticalRounded size={18} /></th>

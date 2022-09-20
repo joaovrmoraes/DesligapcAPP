@@ -22,4 +22,4 @@ routes.get('/horario', selectHorario)
 routes.get('/diretorio', listarArquivos)
 routes.get('/arquivo', selecionarArquivo)
 
-export default routes
+export default routes   
