@@ -13,12 +13,18 @@ const createWindow = () => {
     height: 720,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
+      // remover tools do chrome
+      devTools: false
     },
     icon: "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png"
   });
 
-  // mainWindow.removeMenu()
-  // mainWindow.setMenu(null)
+  // remover o menu superior
+  mainWindow.removeMenu()
+  mainWindow.setMenu(null)
+  //declarar icone na barra de tarefas
+  mainWindow.setOverlayIcon('E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png', 'Monitor Branyl')
+
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
