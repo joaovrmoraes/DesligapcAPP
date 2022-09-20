@@ -1,5 +1,5 @@
 {
-  "name": "MonitorBranyl",
+  "name": "monitorbranyl",
   "productName": "MonitorBranyl",
   "version": "1.0.1",
   "description": "Monitoramento da branyl",
@@ -19,13 +19,15 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
             "name": "MonitorBranyl",
-            "iconUrl": "https://cdn.icon-icons.com/icons2/2063/PNG/512/rocket_startup_monitor_screen_computer_icon_124621.png"
+            "setupIcon": "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.ico"
           }
         },
         {
@@ -38,14 +40,14 @@
           "name": "@electron-forge/maker-deb",
           "config": {
             "name": "MonitorBranyl",
-            "iconUrl": "https://cdn.icon-icons.com/icons2/2063/PNG/512/rocket_startup_monitor_screen_computer_icon_124621.png"
+            "setupIcon": "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.ico"
           }
         },
         {
           "name": "@electron-forge/maker-rpm",
           "config": {
             "name": "MonitorBranyl",
-            "iconUrl": "https://cdn.icon-icons.com/icons2/2063/PNG/512/rocket_startup_monitor_screen_computer_icon_124621.png"
+            "setupIcon": "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.ico"
           }
         }
       ],
