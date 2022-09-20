@@ -3,9 +3,7 @@ import * as React from 'react';
 import './button.css';
 import { FcFinePrint } from 'react-icons/fc';
 import { useState, useEffect } from 'react';
-import { SiSocketdotio } from 'react-icons/si';
-import Button from 'react-bootstrap/Button';
-import Collapse from 'react-bootstrap/Collapse';
+import { FaTimes, FaCheck } from 'react-icons/fa'
 import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import api from '../../services/api/axios.js';
@@ -27,9 +25,9 @@ function LogButton({ value }) {
 
     function PowerOnOff(value) {
         if (value === "Ok") {
-            return <SiSocketdotio style={{ 'color': 'green' }} size={24} />
+            return <FaCheck color='green' size={22} />
         }
-        return <SiSocketdotio style={{ 'color': 'red' }} size={24} />
+        return <FaTimes color='red' size={22} />
     }
 
     function Dominio(value) {

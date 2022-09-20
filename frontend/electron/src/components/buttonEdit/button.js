@@ -1,31 +1,33 @@
 
 import * as React from 'react';
 import './button.css';
-import { FcAddDatabase } from 'react-icons/fc';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import { FcAutomatic } from 'react-icons/fc';
+import { useState, useEffect } from 'react';
+import { FaTimes, FaCheck } from 'react-icons/fa'
 import Stack from 'react-bootstrap/Stack';
-import api from '../../services/api/axios';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import api from '../../services/api/axios.js';
 
-function BotaoModal() {
+function ButtonEdit({ nome, tag, dominio, desliga, id }) {
     const [show, setShow] = useState(false);
+    const [pcNome, setPcNome] = useState(nome);
+    const [pcTag, setPcTag] = useState(tag);
+    const [pcDesliga, setPcDesliga] = useState(desliga);
+    const [pcDominio, setPcDominio] = useState(dominio);
+    const [pcId, setPcId] = useState(id);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const [nome, setNome] = useState('');
-    const [tag, setTag] = useState('');
-    const [desliga, setDesliga] = useState('');
-    const [dominio, setDominio] = useState('');
-
-    function adicionar() {
-        api.post('/addpc', {
-            nome: nome,
-            tag: tag.toUpperCase(),
-            desliga: parseInt(desliga),
-            dominio: dominio
+    function Editar() {
+        api.put('/alterar', {
+            nome: pcNome,
+            tag: pcTag,
+            desliga: parseInt(pcDesliga),
+            dominio: pcDominio,
+            id: pcId
         })
             .then(async (response) => {
                 console.log('ok')
@@ -40,8 +42,8 @@ function BotaoModal() {
 
     return (
         <>
-            <button className='edit_button' onClick={handleShow} style={{ 'color': 'white' }}>
-                <FcAddDatabase size={30} />  Cadastrar
+            <button className='edit_button' onClick={() => { handleShow(); }}>
+                <FcAutomatic size={26} />
             </button>
             <Modal show={show}
                 onHide={handleClose}
@@ -49,8 +51,8 @@ function BotaoModal() {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header closeButton>
-                    <Modal.Title>Cadastrar Computador</Modal.Title>
+                <Modal.Header >
+                    <Modal.Title>Editar Computador</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -59,32 +61,30 @@ function BotaoModal() {
                             <Form.Control
                                 type="email"
                                 autoFocus
-                                onChange={(e) => { setNome(e.target.value) }}
-                                value={nome}
+                                onChange={(e) => { setPcNome(e.target.value) }}
+                                value={pcNome}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Tag:</Form.Label>
                             <Form.Control
                                 type="email"
-                                onChange={(e) => { setTag(e.target.value) }}
-                                value={tag}
+                                onChange={(e) => { setPcTag(e.target.value) }}
+                                value={pcTag}
                             />
                         </Form.Group>
                     </Form>
                     <Stack direction="horizontal" className='justify-content-between' gap={2}>
                         <Form.Group >
                             <Form.Label>Dominio:</Form.Label>
-                            <Form.Select onChange={(e) => { setDominio(e.target.value) }} defaultValue={0}>
-                                <option disabled value={0}>Selecione um dominio</option>
+                            <Form.Select defaultValue={pcDominio} onChange={(e) => { setPcDominio(e.target.value) }}>
                                 <option value={'.BRANYL.DOMINIO'}>Capivari</option>
                                 <option value={'.SPMOMBUCA.BRANYL.DOMINIO'}>Mombuca</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group >
                             <Form.Label>Desliga:</Form.Label>
-                            <Form.Select onChange={(e) => { setDesliga(e.target.value) }} defaultValue={0}>
-                                <option disabled value={0}>Computador será desligado?</option>
+                            <Form.Select defaultValue={pcDesliga} onChange={(e) => { setPcDesliga(e.target.value) }}>
                                 <option value={1}>Sim</option>
                                 <option value={0}>Não</option>
                             </Form.Select>
@@ -92,10 +92,10 @@ function BotaoModal() {
                     </Stack>
                 </Modal.Body>
                 <Modal.Footer className='d-flex justify-content-between'>
-                    <Button variant="success" onClick={() => { handleClose(); adicionar(); refresh() }}>
+                    <Button variant="success" onClick={async () => { handleClose(); Editar(); refresh() }}>
                         Inserir
                     </Button>
-                    <Button variant="danger" onClick={() => { handleClose() }}>
+                    <Button variant="danger" onClick={() => { handleClose(); }}>
                         Cancelar
                     </Button>
                 </Modal.Footer>
@@ -103,4 +103,4 @@ function BotaoModal() {
         </>
     )
 }
-export default BotaoModal
+export default ButtonEdit

@@ -20,6 +20,34 @@ export async function selectPC(req, res) {
         });
 }
 
+export async function selectDominio(req, res) {
+    openDb()
+        .then(db => {
+            if (req.query.dominio) {
+                db.all('SELECT * FROM computadores WHERE dominio = ?', [req.query.dominio])
+                    .then(computadores => res.json(computadores))
+            }
+            else {
+                db.all('SELECT * FROM computadores')
+                    .then(computadores => res.json(computadores))
+            }
+        });
+}
+
+export async function selectDesliga(req, res) {
+    openDb()
+        .then(db => {
+            if (req.query.desliga) {
+                db.all('SELECT * FROM computadores WHERE desliga =?', [req.query.desliga])
+                    .then(computadores => res.json(computadores))
+            }
+            else {
+                db.all('SELECT * FROM computadores')
+                    .then(computadores => res.json(computadores))
+            }
+        });
+}
+
 export async function insertPc(req, res) {
     let pc = req.body
     openDb()

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { selectPC, insertPc, alterarPc, createTable, alterarHorario, selectHorario } from "./controllers/computadores.js";
+import { selectPC, insertPc, alterarPc, createTable, alterarHorario, selectHorario, selectDominio, selectDesliga } from "./controllers/computadores.js";
 import { listarArquivos, selecionarArquivo } from "./controllers/arquivos.js";
 const routes = new Router();
 import { executador } from './controllers/executador.js'
@@ -21,5 +21,7 @@ routes.put('/horario', alterarHorario)
 routes.get('/horario', selectHorario)
 routes.get('/diretorio', listarArquivos)
 routes.get('/arquivo', selecionarArquivo)
+routes.get('/filtroDominio', selectDominio)
+routes.get('/filtroDesliga', selectDesliga)
 
 export default routes   

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Navbar, Container, Nav } from "react-bootstrap";
 import './navbar.css'
 import BotaoModal from '../button/button';
-import BotaoLogs from '../buttonSetting/button';
+import BotaoLogs from '../buttonListlogs/button';
 
 function NavigateBar() {
     return (

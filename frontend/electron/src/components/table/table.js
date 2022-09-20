@@ -3,10 +3,8 @@ import { useState, useEffect } from 'react';
 import { FcAutomatic, FcFilledFilter } from 'react-icons/fc';
 import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { FaTimes, FaCheck, FaSearch } from 'react-icons/fa'
-import Button from 'react-bootstrap/Button';
+import ButtonEdit from '../buttonEdit/button.js';
 import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import Stack from 'react-bootstrap/Stack';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -25,9 +23,6 @@ function TabelaPC() {
     const handleShow = () => setShow(true);
 
     const [busca, setBusca] = useState('');
-    const [id, setId] = useState('');
-    const [nome, setNome] = useState('');
-    const [tag, setTag] = useState('');
     const [desliga, setDesliga] = useState('');
     const [dominio, setDominio] = useState('');
 
@@ -38,11 +33,6 @@ function TabelaPC() {
                     setItens(response.data)
             }).catch(error => { console.log('erro ao receber lista') })
     }, [refreshKey, busca])
-
-    function atualizador() {
-        setItens([])
-        setRefreshKey(oldKey => oldKey + 1);
-    }
 
     function dominioEdit(domain) {
         if (domain === '.BRANYL.DOMINIO') {
@@ -60,21 +50,20 @@ function TabelaPC() {
         }
     }
 
-    const abc = <FcFilledFilter />
-
-    function Editar() {
-        api.put('/alterar', {
-            nome: nome,
-            tag: tag,
-            desliga: parseInt(desliga),
-            dominio: dominio,
-            id: id
-        })
+    function filterDominio() {
+        api.get('/filtroDominio?dominio=' + dominio)
             .then(async (response) => {
-                console.log('ok')
-            }).catch(error => {
-                console.log('erro')
-            })
+                await
+                    setItens(response.data)
+            }).catch(error => { console.log('erro ao receber lista') })
+    }
+
+    function filterDesliga() {
+        api.get('/filtroDesliga?desliga=' + desliga)
+            .then(async (response) => {
+                await
+                    setItens(response.data)
+            }).catch(error => { console.log('erro ao receber lista') })
     }
 
     return (
@@ -113,8 +102,22 @@ function TabelaPC() {
                         <th><BiDotsVerticalRounded size={18} /></th>
                         <th>Computador</th>
                         <th>Tag</th>
-                        <th>Dominio</th>
-                        <th>Desliga</th>
+                        <th>
+                            <select defaultValue={''} className='text-center' style={{ 'border': '0 none', 'fontWeight': 'bold', 'outline': '0 none' }}
+                                onChange={(e) => { setDominio(e.target.value); setItens([]); }} onClick={filterDominio} >
+                                <option value={''}>Dominio</option>
+                                <option value=".BRANYL.DOMINIO">CAPIVARI</option>
+                                <option value=".SPMOMBUCA.BRANYL.DOMINIO">MOMBUCA</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select defaultValue={''} className='text-center' style={{ 'border': '0 none', 'fontWeight': 'bold', 'outline': '0 none' }}
+                                onChange={(e) => { setDesliga(e.target.value); setItens([]); }} onClick={filterDesliga} >
+                                <option value={''}>Desliga</option>
+                                <option value="0">❌</option>
+                                <option value="1">✔️</option>
+                            </select>
+                        </th>
                     </tr>
                 </thead>
                 <tbody className='text-center'>
@@ -122,66 +125,7 @@ function TabelaPC() {
                         return (
                             <tr key={itens.id}>
                                 <td >
-                                    <button className='edit_button' onClick={() => { handleShow(); setId(itens.id); setNome(itens.nome); setTag(itens.tag); setDesliga(itens.desliga); setDominio(itens.dominio) }}>
-                                        <FcAutomatic size={26} />
-                                    </button>
-                                    <Modal show={show}
-                                        onHide={handleClose}
-                                        size="lg"
-                                        aria-labelledby="contained-modal-title-vcenter"
-                                        centered
-                                    >
-                                        <Modal.Header >
-                                            <Modal.Title>Cadastrar Computador</Modal.Title>
-                                        </Modal.Header>
-                                        <Modal.Body>
-                                            <Form>
-                                                <Form.Group className="mb-3" >
-                                                    <Form.Label>Computador</Form.Label>
-                                                    <Form.Control
-                                                        type="email"
-                                                        autoFocus
-                                                        onChange={(e) => { setNome(e.target.value) }}
-                                                        value={nome}
-                                                    />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" >
-                                                    <Form.Label>Tag:</Form.Label>
-                                                    <Form.Control
-                                                        type="email"
-                                                        onChange={(e) => { setTag(e.target.value) }}
-                                                        value={tag}
-                                                    />
-                                                </Form.Group>
-                                            </Form>
-                                            <Stack direction="horizontal" className='justify-content-between' gap={2}>
-                                                <Form.Group >
-                                                    <Form.Label>Dominio:</Form.Label>
-                                                    <Form.Select defaultValue={dominio}
-                                                        onChange={(e) => { setDominio(e.target.value) }}>
-                                                        <option value={'.BRANYL.DOMINIO'}>Capivari</option>
-                                                        <option value={'.SPMOMBUCA.BRANYL.DOMINIO'}>Mombuca</option>
-                                                    </Form.Select>
-                                                </Form.Group>
-                                                <Form.Group >
-                                                    <Form.Label>Desliga:</Form.Label>
-                                                    <Form.Select defaultValue={desliga}
-                                                        onChange={(e) => { setDesliga(e.target.value) }}>
-                                                        <option value={1}>Sim</option>
-                                                        <option value={0}>Não</option>
-                                                    </Form.Select>
-                                                </Form.Group>
-                                            </Stack>
-                                        </Modal.Body>
-                                        <Modal.Footer className='d-flex justify-content-between'>
-                                            <Button variant="success" onClick={async () => { handleClose(); Editar(); atualizador() }}>
-                                                Inserir
-                                            </Button>
-                                            <Button variant="danger" onClick={() => { handleClose(); }}>
-                                                Cancelar
-                                            </Button>
-                                        </Modal.Footer>
-                                    </Modal>
+                                    <ButtonEdit nome={itens.nome} tag={itens.tag} dominio={itens.dominio} desliga={itens.desliga} id={itens.id} />
                                 </td>
                                 <td>{itens.nome}</td>
                                 <td>{itens.tag}</td>
