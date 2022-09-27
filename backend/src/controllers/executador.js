@@ -4,7 +4,7 @@ import { PythonShell } from "python-shell";
 import { openDb } from "./configDB.js";
 
 export async function executador(req, res) {
-    const job2 = new CronJob(`0 * * * *`, () => {
+    const job2 = new CronJob(`*/3 * * * *`, () => {
         openDb()
             .then(db => {
                 db.all('SELECT * FROM hora  ')
@@ -18,7 +18,7 @@ export async function executador(req, res) {
                         const job = new CronJob(`20 ${hora[0].minutos} ${hora[0].horas} * * 0-6`, () => {
                             let data = `${new Date()} : Executado\n`;
                             console.log(`tarefa agendada`)
-                            PythonShell.run('../python/teste.py', null, function (err) {
+                            PythonShell.run('E:\\Joao\\Projeto de Teste\\delisgapcbanco\\python\\teste.py', null, function (err) {
                                 if (err) throw err;
                                 console.log('finished');
                             });

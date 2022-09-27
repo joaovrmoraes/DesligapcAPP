@@ -36,6 +36,17 @@ function ButtonEdit({ nome, tag, dominio, desliga, id }) {
             })
     }
 
+    function Deletar() {
+        api.post('/deletar', {
+            id: pcId
+        })
+            .then(async (response) => {
+                console.log('ok')
+            }).catch(error => {
+                console.log('erro')
+            })
+    }
+
     function refresh() {
         location.reload()
     }
@@ -51,10 +62,10 @@ function ButtonEdit({ nome, tag, dominio, desliga, id }) {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header >
+                <Modal.Header closeButton >
                     <Modal.Title>Editar Computador</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body >
                     <Form>
                         <Form.Group className="mb-3" >
                             <Form.Label>Computador</Form.Label>
@@ -95,8 +106,8 @@ function ButtonEdit({ nome, tag, dominio, desliga, id }) {
                     <Button variant="success" onClick={async () => { handleClose(); Editar(); refresh() }}>
                         Inserir
                     </Button>
-                    <Button variant="danger" onClick={() => { handleClose(); }}>
-                        Cancelar
+                    <Button variant="danger" onClick={async () => { handleClose(); Deletar(); refresh() }}>
+                        Excluir
                     </Button>
                 </Modal.Footer>
             </Modal>

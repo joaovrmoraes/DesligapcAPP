@@ -14,16 +14,16 @@ const createWindow = () => {
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       // remover tools do chrome
-      devTools: false
+      // devTools: false
     },
-    icon: "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png"
+    // icon: "E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png"
   });
 
   // remover o menu superior
-  mainWindow.removeMenu()
-  mainWindow.setMenu(null)
+  // mainWindow.removeMenu()
+  // mainWindow.setMenu(null)
   //declarar icone na barra de tarefas
-  mainWindow.setOverlayIcon('E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png', 'Monitor Branyl')
+  // mainWindow.setOverlayIcon('E:\\Joao\\Projeto de Teste\\delisgapcbanco\\frontend\\electron\\build\\computer.png', 'Monitor Branyl')
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

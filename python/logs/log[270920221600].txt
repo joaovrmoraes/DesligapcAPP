@@ -1,0 +1,26 @@
+[{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:49 2022"}
+,
+ {"Computador": "A.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:51 2022"}
+,
+ {"Computador": "PC.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:54 2022"}
+ ][{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:49 2022"}
+,
+ {"Computador": "A.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:51 2022"}
+,
+ {"Computador": "PC.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:54 2022"}
+ ][{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:49 2022"}
+,
+ {"Computador": "A.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:51 2022"}
+,
+ {"Computador": "PC.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:54 2022"}
+ ][{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:49 2022"}
+,
+ {"Computador": "A.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:51 2022"}
+,
+ {"Computador": "PC.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:54 2022"}
+ ][{"Computador": "4VSFKH3.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:49 2022"}
+,
+ {"Computador": "A.SPMOMBUCA.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:51 2022"}
+,
+ {"Computador": "PC.BRANYL.DOMINIO", "Status": "Desligado", "Tempo":"Tue Sep 27 16:00:54 2022"}
+ ]

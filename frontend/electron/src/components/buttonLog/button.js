@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import './button.css';
 import { FcFinePrint } from 'react-icons/fc';

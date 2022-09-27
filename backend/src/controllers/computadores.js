@@ -9,8 +9,8 @@ export async function createTable() {
 export async function selectPC(req, res) {
     openDb()
         .then(db => {
-            if (req.query.id || req.query.nome) {
-                db.all('SELECT * FROM computadores WHERE id=? or nome LIKE ? or tag LIKE ?', [req.query.id, '%' + req.query.nome + '%', '%' + req.query.nome + '%'])
+            if (req.query.nome || req.query.desliga || req.query.dominio) {
+                db.all('SELECT * FROM computadores WHERE ((nome LIKE ?) or (tag LIKE ?)) and desliga like ? and dominio like ?', [req.query.nome + '%', req.query.nome + '%', req.query.desliga + '%', req.query.dominio + '%'])
                     .then(computadores => res.json(computadores))
             }
             else {
@@ -48,11 +48,36 @@ export async function selectDesliga(req, res) {
         });
 }
 
+export async function selectFilter(req, res) {
+    openDb()
+        .then(db => {
+            if (req.query.desliga || req.query.dominio) {
+                db.all('SELECT * FROM computadores WHERE dominio like ? and desliga like ?', [req.query.dominio + '%', req.query.desliga + '%'])
+                    .then(computadores => res.json(computadores))
+            }
+            else {
+                db.all('SELECT * FROM computadores')
+                    .then(computadores => res.json(computadores))
+            }
+        });
+}
+
 export async function insertPc(req, res) {
     let pc = req.body
     openDb()
         .then(db => {
             db.run('INSERT INTO computadores (nome, tag, desliga, dominio) VALUES (?, ?, ?, ?)', [pc.nome, pc.tag, pc.desliga, pc.dominio]);
+        });
+    res.json({
+        "statusCode": 200
+    })
+}
+
+export async function deletePc(req, res) {
+    let pc = req.body
+    openDb()
+        .then(db => {
+            db.run('DELETE FROM computadores WHERE id =?', [pc.id]);
         });
     res.json({
         "statusCode": 200
@@ -65,6 +90,18 @@ export async function alterarPc(req, res) {
     openDb()
         .then(db => {
             db.run('UPDATE computadores SET nome=?,tag=?,desliga= ?, dominio=? WHERE id=?', [pc.nome, pc.tag, pc.desliga, pc.dominio, pc.id]);
+        });
+    res.json({
+        "statusCode": 200
+    })
+}
+
+export async function alterarDesliga(req, res) {
+    let pc = req.body
+
+    openDb()
+        .then(db => {
+            db.run('UPDATE computadores SET desliga= ? WHERE id=?', [pc.desliga, pc.id]);
         });
     res.json({
         "statusCode": 200

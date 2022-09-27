@@ -27,12 +27,12 @@ function TabelaPC() {
     const [dominio, setDominio] = useState('');
 
     useEffect(() => {
-        api.get('/lista?nome=' + busca)
+        api.get('/lista?nome=' + busca + '&desliga=' + desliga + '&dominio=' + dominio)
             .then(async (response) => {
                 await
                     setItens(response.data)
             }).catch(error => { console.log('erro ao receber lista') })
-    }, [refreshKey, busca])
+    }, [refreshKey, busca, desliga, dominio])
 
     function dominioEdit(domain) {
         if (domain === '.BRANYL.DOMINIO') {
@@ -48,22 +48,6 @@ function TabelaPC() {
         } else {
             return <FaCheck size={22} color={'green'} />
         }
-    }
-
-    function filterDominio() {
-        api.get('/filtroDominio?dominio=' + dominio)
-            .then(async (response) => {
-                await
-                    setItens(response.data)
-            }).catch(error => { console.log('erro ao receber lista') })
-    }
-
-    function filterDesliga() {
-        api.get('/filtroDesliga?desliga=' + desliga)
-            .then(async (response) => {
-                await
-                    setItens(response.data)
-            }).catch(error => { console.log('erro ao receber lista') })
     }
 
     return (
@@ -104,7 +88,7 @@ function TabelaPC() {
                         <th>Tag</th>
                         <th>
                             <select defaultValue={''} className='text-center' style={{ 'border': '0 none', 'fontWeight': 'bold', 'outline': '0 none' }}
-                                onChange={(e) => { setDominio(e.target.value); setItens([]); }} onClick={filterDominio} >
+                                onChange={(e) => { setDominio(e.target.value); setItens([]); }}>
                                 <option value={''}>Dominio</option>
                                 <option value=".BRANYL.DOMINIO">CAPIVARI</option>
                                 <option value=".SPMOMBUCA.BRANYL.DOMINIO">MOMBUCA</option>
@@ -112,7 +96,7 @@ function TabelaPC() {
                         </th>
                         <th>
                             <select defaultValue={''} className='text-center' style={{ 'border': '0 none', 'fontWeight': 'bold', 'outline': '0 none' }}
-                                onChange={(e) => { setDesliga(e.target.value); setItens([]); }} onClick={filterDesliga} >
+                                onChange={(e) => { setDesliga(e.target.value); setItens([]); }} >
                                 <option value={''}>Desliga</option>
                                 <option value="0">❌</option>
                                 <option value="1">✔️</option>
